@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Ball.svg" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/Ball.svg" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 26.0768
+radius = 20.0
 
 [node name="Ball" type="Area2D"]
 

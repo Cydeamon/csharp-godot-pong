@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Fonts/Kanit/Kanit-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ObjectsTemplates/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ObjectsTemplates/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ObjectsTemplates/Limiter.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 170
@@ -16,7 +18,16 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Game" type="Node2D" parent="."]
 
+[node name="TopLimiter" parent="Game" instance=ExtResource( 4 )]
+position = Vector2( 8, 10 )
+
+[node name="BottomLimiter" parent="Game" instance=ExtResource( 4 )]
+position = Vector2( 8, 1070 )
+
 [node name="Player" type="Node2D" parent="Game"]
+
+[node name="Player" parent="Game/Player" instance=ExtResource( 3 )]
+position = Vector2( 100, 540 )
 
 [node name="Score" type="Label" parent="Game/Player"]
 margin_right = 900.0
@@ -35,6 +46,9 @@ margin_bottom = 210.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "0"
+
+[node name="Player" parent="Game/Enemy" instance=ExtResource( 3 )]
+position = Vector2( 1820, 540 )
 
 [node name="Separator" type="ReferenceRect" parent="Game"]
 margin_left = 960.0

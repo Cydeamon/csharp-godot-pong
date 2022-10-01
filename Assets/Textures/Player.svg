@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="13.229167mm"
-   height="13.229167mm"
-   viewBox="0 0 13.229167 13.229167"
+   width="12.951287mm"
+   height="55.017464mm"
+   viewBox="0 0 12.951287 55.017462"
    version="1.1"
    id="svg5"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   sodipodi:docname="Ball.svg"
+   sodipodi:docname="Player.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +26,8 @@
      showgrid="false"
      showborder="true"
      inkscape:zoom="8"
-     inkscape:cx="59.8125"
-     inkscape:cy="39.9375"
+     inkscape:cx="77.6875"
+     inkscape:cy="33.6875"
      inkscape:window-width="1920"
      inkscape:window-height="1051"
      inkscape:window-x="-9"
@@ -40,12 +40,14 @@
      inkscape:label="Слой 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-54.572917,-60.072917)">
-    <circle
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.528;stroke-opacity:0.118033"
-       id="path1209"
-       cx="61.1875"
-       cy="66.6875"
-       r="6.6145835" />
+     transform="translate(-37.58868,-42.060165)">
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.38466;stroke-opacity:0.118033"
+       id="rect6924"
+       width="12.951287"
+       height="55.017464"
+       x="37.58868"
+       y="42.060165"
+       ry="2.7053306" />
   </g>
 </svg>
