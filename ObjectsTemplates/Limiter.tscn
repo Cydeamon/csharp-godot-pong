@@ -3,7 +3,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 952.5, 1 )
 
-[node name="Limiter" type="Area2D"]
+[node name="Limiter" type="RigidBody2D"]
+mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1905.0

@@ -29,6 +29,8 @@ common/drop_mouse_on_gui_input_disabled=true
 [mono]
 
 project/assembly_name="C# Ping Pong"
+profiler/enabled=true
+debugger_agent/wait_for_debugger=true
 
 [physics]
 
