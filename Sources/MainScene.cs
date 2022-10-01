@@ -9,39 +9,61 @@ public class MainScene : Node2D
     public int EnemyScore = 0;
     
     public bool GameStarted;
-    public bool IsPlayerTurn; 
+    public bool IsPlayerTurn;
 
+    public PlayerRect PlayerNode;
+    
     public Vector2 BallDirection = Vector2.Zero;
     public KinematicBody2D Ball;
+    
     [Export] public int BallSpeed;
+    [Export] public int PlayerSpeed;
 
     public override void _Ready()
     {
+        PlayerNode = GetNode<PlayerRect>("Game/Player/Player");
         Ball = GetNode<KinematicBody2D>("Game/Ball");
         GameReset();
     }
 
+    public override void _Process(float delta)
+    {
+        float moveDistance = Input.GetActionStrength("down");
+        moveDistance -= Input.GetActionStrength("up");
+        moveDistance *= delta;
+        moveDistance *= PlayerSpeed;
+
+        PlayerNode.Translate(new Vector2(0, moveDistance));
+    }
+
     public override void _PhysicsProcess(float delta)
     {
-        KinematicCollision2D result = Ball.MoveAndCollide(BallDirection * BallSpeed * delta);
-
-        if (result != null)
+        if (GameStarted)
         {
-            Node collider = (Node) result.Collider;
+            KinematicCollision2D result = Ball.MoveAndCollide(BallDirection * BallSpeed * delta);
 
-            if (collider.Name == "Player")
+            if (result != null)
             {
-                PlayerRect player = (PlayerRect) collider;
-                player.OnHit(Ball);
-                BallBounceAfterPlayerHit(player.LastHitHeightPositionPercent);
-                IsPlayerTurn = !IsPlayerTurn;
+                Node collider = (Node) result.Collider;
+
+                if (collider.Name == "Player")
+                {
+                    PlayerRect player = (PlayerRect) collider;
+                    player.OnHit(Ball);
+                    BallBounceAfterPlayerHit(player.LastHitHeightPositionPercent);
+                    IsPlayerTurn = !IsPlayerTurn;
+                }
+                else
+                {
+                    BallDirection.y = -BallDirection.y;
+                }
             }
         }
     }
 
     private void BallBounceAfterPlayerHit(float hitHeightPercentPosition)
     { 
-        float maxAngle = 140;
+        float maxAngle = 90;
         float angle = (maxAngle * hitHeightPercentPosition / 100) - maxAngle / 2;
 
         BallDirection.x = (float) Math.Cos(angle);
@@ -50,7 +72,6 @@ public class MainScene : Node2D
         if (IsPlayerTurn)
         {
             BallDirection.x = -BallDirection.x;
-            BallDirection.y = -BallDirection.y;
         }
         
     }
@@ -80,18 +101,18 @@ public class MainScene : Node2D
         GameStart();
     }
 
-    public void OnLoseTriggerBodyEntered(string player)
+    public void OnLoseTriggerBodyEntered(Node body, string player)
     {
-        if (player == "player")
+        if (player == "Player")
+        {
+            EnemyScore++;
+            GetNode<Label>("Game/Enemy/Score").Text = EnemyScore.ToString();
+        }
+
+        if (player == "Enemy")
         {
             PlayerScore++;
             GetNode<Label>("Game/Player/Score").Text = PlayerScore.ToString();
-        }
-
-        if (player == "enemy")
-        {
-            EnemyScore++;
-            GetNode<Label>("Game/Player/Score").Text = EnemyScore.ToString();
         }
         
         GameReset();
